@@ -1,0 +1,31 @@
+---
+spring:
+  profiles: peer1        # profile = peer1
+
+server:
+  port: 8761         # Eureka实例端口
+
+eureka:
+  instance:
+    hostname: peer1  # Eureka实例的主机名
+  client:
+#    register-with-eureka: false
+#    fetch-registry: false
+    service-url:
+      default-zone: http://peer2:8762/eureka/  #注册到peer2的Eureka
+
+---
+spring:
+  profiles: peer2        # profile = peer2
+
+server:
+  port: 8762         # Eureka实例端口
+
+eureka:
+  instance:
+    hostname: peer2  # Eureka实例的主机名
+  client:
+#    register-with-eureka: false
+#    fetch-registry: false
+    service-url:
+      default-zone: http://peer1:8761/eureka/  #注册到peer1的Eureka
