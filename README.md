@@ -13,6 +13,11 @@ Spring cloud学习记录
 编译
 
     mvn -DskipTests package
+    ./gradlew build
+    
+端口打洞
+
+    ssh -p2567 -L 28761:172.16.15.142:8761 cmcc-dev
     
 Eureka服务
 
