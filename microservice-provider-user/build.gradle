@@ -1,0 +1,16 @@
+apply plugin: 'org.springframework.boot'
+
+description = 'User Provider Server'
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR6'
+    }
+}
+
+dependencies {
+    compile "org.springframework.cloud:spring-cloud-starter-eureka"
+    compile "org.springframework.boot:spring-boot-starter-data-jpa"
+    compile "org.springframework.boot:spring-boot-starter-actuator"
+    compile "com.h2database:h2:1.4.193"
+}

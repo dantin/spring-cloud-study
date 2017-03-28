@@ -26,5 +26,11 @@ hs_err_pid*
 *.iml
 *.ipr
 *.iws
+.idea/
 
 target/
+build/
+
+.gradle/
+
+!gradle/wrapper/gradle-wrapper.jar

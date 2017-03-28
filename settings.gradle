@@ -1,0 +1,16 @@
+rootProject.name = 'spring-cloud-microservice-study'
+include ':microservice-discovery-eureka'
+include ':microservice-provider-user'
+include ':microservice-consumer-movie-ribbon'
+include ':microservice-consumer-movie-feign'
+include ':microservice-consumer-movie-ribbon-with-hystrix'
+include ':microservice-consumer-movie-feign-with-hystrix'
+include ':microservice-hystrix-dashboard'
+
+project(':microservice-discovery-eureka').projectDir = "$rootDir/microservice-discovery-eureka" as File
+project(':microservice-provider-user').projectDir = "$rootDir/microservice-provider-user" as File
+project(':microservice-consumer-movie-ribbon').projectDir = "$rootDir/microservice-consumer-movie-ribbon" as File
+project(':microservice-consumer-movie-feign').projectDir = "$rootDir/microservice-consumer-movie-feign" as File
+project(':microservice-consumer-movie-ribbon-with-hystrix').projectDir = "$rootDir/microservice-consumer-movie-ribbon-with-hystrix" as File
+project(':microservice-consumer-movie-feign-with-hystrix').projectDir = "$rootDir/microservice-consumer-movie-feign-with-hystrix" as File
+project(':microservice-hystrix-dashboard').projectDir = "$rootDir/microservice-hystrix-dashboard" as File
