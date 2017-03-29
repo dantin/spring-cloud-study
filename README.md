@@ -2,13 +2,7 @@
 
 Spring cloud学习记录
 
-### 机器及环境
-
-| IP |
-| --  |
-| 172.16.15.142 |
-| 172.16.15.143 |
-| 172.16.15.144 |
+### 服务模块
 
 编译
 
@@ -30,19 +24,29 @@ Provider服务
     
 ### Consul集群搭建
 
-node0(10.12.21.142)
+#### 机器及环境
 
-    ./consul agent -data-dir /tmp/node0 -node=node0 -bind=10.12.21.142 -datacenter=dc1 -ui -client=10.12.21.142 -server -bootstrap-expect 1
-    ./consul members -rpc-addr=10.12.21.142:8400
+| 主机名 | IP            | 作用          |  允许远程访问 |
+| ----- | ------------- | ------------- | ----------- |
+| node0 | 172.16.15.142 | consul server | 是          |
+| node1 | 172.16.15.143 | consul client | 否          |
+| node2 | 172.16.15.144 | consul client | 是          |
 
-node1(10.12.21.145)
+#### 各节点启停命令
 
-    ./consul agent -data-dir /tmp/node1 -node=node1 -bind=10.12.21.145 -datacenter=dc1 -ui
-    ./consul join 10.12.21.142
-    ./consul members -rpc-addr=10.12.21.142:8400
+node0(172.16.15.142)
+
+    /opt/consul/consul agent -data-dir /tmp/node0 -node=node0 -bind=172.16.15.142 -datacenter=dc1 -ui -client=172.16.15.142 -server -bootstrap-expect 1
+    /opt/consul/consul members -rpc-addr=172.16.15.142:8400
+
+node1(172.16.15.143)
+
+    /opt/consul/consul agent -data-dir /tmp/node1 -node=node1 -bind=172.16.15.143 -datacenter=dc1 -ui
+    /opt/consul/consul join 172.16.15.142
+    /opt/consul/consul members -rpc-addr=172.16.15.142:8400
     
-node2(10.12.18.26)本机
+node2(172.16.15.144)本机
 
-    ./consul agent -data-dir /tmp/node2 -node=node2 -bind=10.12.18.26 -datacenter=dc1 -ui -client=10.12.18.26
-    ./consul join -rpc-addr=10.12.18.26:8400 10.12.21.142
-    ./consul members -rpc-addr=10.12.21.142:8400
+    /opt/consul/consul agent -data-dir /tmp/node2 -node=node2 -bind=172.16.15.144 -datacenter=dc1 -ui -client=172.16.15.144
+    /opt/consul/consul join -rpc-addr=172.16.15.144:8400 172.16.15.142
+    /opt/consul/consul members -rpc-addr=172.16.15.142:8400
