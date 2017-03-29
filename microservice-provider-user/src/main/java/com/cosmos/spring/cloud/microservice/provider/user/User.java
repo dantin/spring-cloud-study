@@ -2,9 +2,6 @@ package com.cosmos.spring.cloud.microservice.provider.user;
 
 import javax.persistence.*;
 
-/**
- * Created by david on 10/03/2017.
- */
 @Entity
 public class User {
 
