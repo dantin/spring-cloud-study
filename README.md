@@ -11,16 +11,24 @@ Spring cloud学习记录
     
 端口打洞
 
+    # Eureka控制台
     ssh -p2567 -L 28761:172.16.15.142:8761 cmcc-dev
+    # Consul控制台
+    ssh -p2567 -L 28500:172.16.15.142:8500 cmcc-dev
     
 Eureka服务
 
-    java -jar microservice-discovery-eureka/target/microservice-discovery-eureka-1.0-SNAPSHOT.jar
+    java -jar microservice-discovery-eureka/build/libs/microservice-discovery-eureka-1.0-SNAPSHOT.jar
 
 Provider服务
 
-    java -jar microservice-provider-user/target/microservice-provider-user-1.0-SNAPSHOT.jar
-    java -jar -Dserver.port=8001 microservice-provider-user/target/microservice-provider-user-1.0-SNAPSHOT.jar
+    # 8000端口服务
+    java -jar microservice-provider-user/build/libs/microservice-provider-user-1.0-SNAPSHOT.jar
+    # 8001端口服务
+    java -jar -Dserver.port=8001 microservice-provider-user/build/libs/microservice-provider-user-1.0-SNAPSHOT.jar
+    # 验证
+    curl http://172.16.15.142:8000/instance-info
+    curl http://172.16.15.142:8001/1
     
 ### Consul集群搭建
 
